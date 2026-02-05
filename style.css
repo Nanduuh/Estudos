@@ -2389,3 +2389,95 @@ input:checked + .slider:before {
   .tema-escuro .btn-hero-secondary:hover {
     background: rgba(255, 255, 255, 0.1);
   }
+
+  .cards-materias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .card-materia {
+    background: #0f172a;
+    color: #fff;
+    padding: 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .card-materia:hover {
+    background: #1e293b;
+    transform: translateY(-4px);
+  }
+
+  .card-icone {
+    font-size: 26px;
+  }
+
+  .logo-img {
+    height: 55px;
+  }
+  .footer-icons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+  
+  .footer-icons img {
+    width: 26px;
+    height: 26px;
+    opacity: 0.8;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  
+  .footer-icons img:hover {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+
+  .contato-sobre {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 20px;
+  }
+  
+  .contato-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1rem;
+    text-decoration: none;
+    color: inherit;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .contato-item i {
+    font-size: 1.4rem;
+  }
+  
+  .contato-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+  }
+  
+  /* Cores dos ícones */
+  .contato-item .fa-whatsapp {
+    color: #25D366;
+  }
+  
+  .contato-item .fa-instagram {
+    color: #E1306C;
+  }
+  
+  .contato-item .fa-envelope {
+    color: #4dabf7;
+  }
