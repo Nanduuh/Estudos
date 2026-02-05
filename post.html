@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Novo Post</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topo">
+  <h1 class="logo">Novo<span>Post</span></h1>
+</header>
+
+<div class="form-box">
+  <h2>Criar Post</h2>
+
+  <div class="form-group">
+    <input type="text" id="titulo" placeholder="Título do post">
+
+    <select id="categoria">
+      <option value="">Selecione a categoria</option>
+      <option>Português</option>
+      <option>Matemática</option>
+      <option>Ciências</option>
+      <option>História & Geografia</option>
+      <option>Dicas de Estudo</option>
+    </select>
+
+    <textarea id="conteudo" placeholder="Conteúdo do post"></textarea>
+
+    <button onclick="criarPost()">Publicar</button>
+  </div>
+</div>
+
+<script>
+  if (!localStorage.getItem("usuarioLogado")) {
+    alert("Você precisa estar logado para publicar");
+    window.location.href = "login.html";
+  }
+</script>
+
+<script src="js/auth.js"></script>
+<script src="js/posts.js"></script>
+<script>
+  protegerPagina();
+</script>
+
+</body>
+</html>

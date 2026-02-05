@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Blog de Estudos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topo">
+  <h1 class="logo">Blog<span>Estudos</span></h1>
+  <p class="descricao">Resumos • Matérias • Dicas • Organização</p>
+
+  <nav class="menu" id="menu-login">
+    <!-- Menu dinâmico será atualizado por auth.js -->
+  </nav>
+</header>
+
+<main class="auth-container">
+  
+  <div class="auth-header">
+    <div class="breadcrumb">
+      <a href="index.html">← Voltar para a página inicial</a>
+    </div>
+    <h1>🔐 Entrar</h1>
+    <p class="auth-subtitle">Acesse sua conta para continuar</p>
+  </div>
+
+  <div class="auth-form-container">
+    <form id="form-login" class="auth-form">
+      <div class="form-group">
+        <label for="usuario">Usuário ou Email</label>
+        <input 
+          type="text" 
+          id="usuario" 
+          name="usuario" 
+          placeholder="Digite seu usuário ou email" 
+          required 
+          autocomplete="username"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input 
+          type="password" 
+          id="senha" 
+          name="senha" 
+          placeholder="Digite sua senha" 
+          required 
+          autocomplete="current-password"
+        />
+      </div>
+
+      <button type="submit" class="btn-login">Entrar</button>
+
+      <div class="auth-links">
+        <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
+      </div>
+    </form>
+  </div>
+
+</main>
+
+<footer>
+  <p>Blog de Estudos © 2026</p>
+</footer>
+
+<script src="js/auth.js"></script>
+<script>
+  // Inicializa o menu
+  if (typeof atualizarMenu === 'function') {
+    atualizarMenu();
+  }
+
+  // Adiciona funcionalidade ao formulário de login
+  document.addEventListener('DOMContentLoaded', function() {
+    const formLogin = document.getElementById('form-login');
+    
+    if (formLogin) {
+      formLogin.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const usuario = document.getElementById('usuario').value;
+        const senha = document.getElementById('senha').value;
+        
+        // Verifica se há usuários cadastrados
+        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        
+        // Verifica se o usuário existe
+        const usuarioEncontrado = usuarios.find(u => 
+          (u.usuario === usuario || u.email === usuario) && u.senha === senha
+        );
+        
+        if (usuarioEncontrado) {
+          // Salva o usuário logado
+          localStorage.setItem('usuarioLogado', JSON.stringify(usuarioEncontrado));
+          
+          // Redireciona para a página inicial
+          alert('Login realizado com sucesso!');
+          window.location.href = 'index.html';
+        } else {
+          alert('Usuário ou senha incorretos!');
+        }
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

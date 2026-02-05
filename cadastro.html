@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - Blog de Estudos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topo">
+  <h1 class="logo">Blog<span>Estudos</span></h1>
+  <p class="descricao">Resumos • Matérias • Dicas • Organização</p>
+
+  <nav class="menu" id="menu-login">
+    <!-- Menu dinâmico será atualizado por auth.js -->
+  </nav>
+</header>
+
+<main class="auth-container">
+  
+  <div class="auth-header">
+    <div class="breadcrumb">
+      <a href="index.html">← Voltar para a página inicial</a>
+    </div>
+    <h1>📝 Criar Conta</h1>
+    <p class="auth-subtitle">Cadastre-se para acessar todos os recursos</p>
+  </div>
+
+  <div class="auth-form-container">
+    <form id="form-cadastro" class="auth-form">
+      <div class="form-group">
+        <label for="nome">Nome Completo</label>
+        <input 
+          type="text" 
+          id="nome" 
+          name="nome" 
+          placeholder="Digite seu nome completo" 
+          required 
+          autocomplete="name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="usuario">Nome de Usuário</label>
+        <input 
+          type="text" 
+          id="usuario" 
+          name="usuario" 
+          placeholder="Escolha um nome de usuário" 
+          required 
+          autocomplete="username"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          placeholder="Digite seu email" 
+          required 
+          autocomplete="email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input 
+          type="password" 
+          id="senha" 
+          name="senha" 
+          placeholder="Digite uma senha segura" 
+          required 
+          autocomplete="new-password"
+        />
+        <small>Use pelo menos 6 caracteres, incluindo letras e números</small>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmar-senha">Confirmar Senha</label>
+        <input 
+          type="password" 
+          id="confirmar-senha" 
+          name="confirmar-senha" 
+          placeholder="Digite a senha novamente" 
+          required 
+          autocomplete="new-password"
+        />
+      </div>
+
+      <button type="submit" class="btn-cadastro">Criar Conta</button>
+
+      <div class="auth-links">
+        <p>Já tem uma conta? <a href="login.html">Faça login aqui</a></p>
+      </div>
+    </form>
+  </div>
+
+</main>
+
+<footer>
+  <p>Blog de Estudos © 2026</p>
+</footer>
+
+<script src="js/auth.js"></script>
+<script>
+  // Inicializa o menu
+  if (typeof atualizarMenu === 'function') {
+    atualizarMenu();
+  }
+
+  // Adiciona funcionalidade ao formulário de cadastro
+  document.addEventListener('DOMContentLoaded', function() {
+    const formCadastro = document.getElementById('form-cadastro');
+    
+    if (formCadastro) {
+      formCadastro.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const nome = document.getElementById('nome').value;
+        const usuario = document.getElementById('usuario').value;
+        const email = document.getElementById('email').value;
+        const senha = document.getElementById('senha').value;
+        const confirmarSenha = document.getElementById('confirmar-senha').value;
+        
+        // Validações básicas
+        if (senha !== confirmarSenha) {
+          alert('As senhas não coincidem!');
+          return;
+        }
+        
+        if (senha.length < 6) {
+          alert('A senha deve ter pelo menos 6 caracteres!');
+          return;
+        }
+        
+        // Obtém usuários existentes
+        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        
+        // Verifica se usuário ou email já existem
+        const usuarioExistente = usuarios.find(u => u.usuario === usuario);
+        const emailExistente = usuarios.find(u => u.email === email);
+        
+        if (usuarioExistente) {
+          alert('Este nome de usuário já está em uso!');
+          return;
+        }
+        
+        if (emailExistente) {
+          alert('Este email já está cadastrado!');
+          return;
+        }
+        
+        // Cria novo usuário
+        const novoUsuario = {
+          id: Date.now(),
+          nome: nome,
+          usuario: usuario,
+          email: email,
+          senha: senha,
+          dataCadastro: new Date().toISOString()
+        };
+        
+        // Adiciona ao array de usuários
+        usuarios.push(novoUsuario);
+        
+        // Salva no localStorage
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+        
+        // Login automático
+        localStorage.setItem('usuarioLogado', JSON.stringify(novoUsuario));
+        
+        alert('Cadastro realizado com sucesso!');
+        window.location.href = 'index.html';
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
