@@ -10,31 +10,30 @@
 <body>
 
 <header class="topo">
-  <img src="img/logo.png" alt="Blog Estudos" class="logo-img">
-  <p class="descricao">Compartilhe • Aprenda • Conecte-se • Evolua</p>
-
-  <nav class="menu" id="menu-login">
-    <!-- Menu dinâmico será atualizado por auth.js -->
-  </nav>
+  <div class="topo-container">
+    <img src="img/logo.png" alt="Blog Estudos" class="logo-img">
+    <nav class="menu" id="menu-login">
+      <a href="index.html">Início</a>
+      <a href="sobre.html">Sobre</a>
+    </nav>
+  </div>
 </header>
 
 <main class="container">
-  
   <div class="breadcrumb">
-    <a href="index.html">← Voltar para a página inicial</a>
+    <a href="index.html"><i class="fas fa-arrow-left"></i> Voltar</a>
   </div>
   
   <div class="contato-container">
     <h1 class="titulo-secao">📧 Contato</h1>
     
-    <div class="contato-intro">
+    <div style="text-align: center; margin-bottom: 3rem;">
       <h2>Estamos aqui para ajudar!</h2>
-      <p>Tem dúvidas, sugestões ou precisa de ajuda? Entre em contato conosco através dos canais abaixo.</p>
+      <p>Tem dúvidas, sugestões ou precisa de ajuda? Entre em contato conosco.</p>
     </div>
     
     <div class="contato-grid">
-      
-      <!-- Formulário de contato -->
+      <!-- Formulário -->
       <div class="form-contato-container">
         <h3><i class="fas fa-envelope"></i> Envie uma Mensagem</h3>
         
@@ -52,12 +51,12 @@
           <div class="form-group">
             <label for="contatoAssunto">Assunto</label>
             <select id="contatoAssunto" required>
-              <option value="">Selecione um assunto</option>
-              <option value="duvida">Dúvida sobre o site</option>
-              <option value="sugestao">Sugestão de melhoria</option>
-              <option value="problema">Reportar problema</option>
-              <option value="parceria">Proposta de parceria</option>
-              <option value="outro">Outro assunto</option>
+              <option value="">Selecione</option>
+              <option value="duvida">Dúvida</option>
+              <option value="sugestao">Sugestão</option>
+              <option value="problema">Problema</option>
+              <option value="parceria">Parceria</option>
+              <option value="outro">Outro</option>
             </select>
           </div>
           
@@ -66,169 +65,106 @@
             <textarea id="contatoMensagem" rows="6" required></textarea>
           </div>
           
-          <button type="submit" class="btn-enviar">
+          <button type="submit" class="btn-login">
             <i class="fas fa-paper-plane"></i> Enviar Mensagem
           </button>
         </form>
       </div>
       
-      <!-- Informações de contato -->
+      <!-- Informações -->
       <div class="info-contato-container">
         <h3><i class="fas fa-info-circle"></i> Outras Formas de Contato</h3>
         
-        <div class="canais-contato">
-          <div class="canal-contato">
-            <div class="canal-icon">
+        <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: white; border-radius: 10px; border: 2px solid var(--border-color);">
+            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
               <i class="fas fa-envelope"></i>
             </div>
-            <div class="canal-info">
-              <h4>Email</h4>
-              <p>fernando.salvadorsoares@gmail.com</p>
+            <div>
+              <h4 style="margin: 0; color: var(--text-color);">Email</h4>
+              <p style="margin: 0; color: #64748b;">fernando.salvadorsoares@gmail.com</p>
             </div>
           </div>
           
-          <div class="canal-contato">
-            <div class="canal-icon">
-              <i class="fas fa-comments"></i>
+          <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: white; border-radius: 10px; border: 2px solid var(--border-color);">
+            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+              <i class="fab fa-whatsapp"></i>
             </div>
-            <div class="canal-info">
-              <h4>Fórum de Discussão</h4>
-              <p>Tire dúvidas diretamente na comunidade</p>
-              <a href="index.html" class="link-forum">Acessar Fórum →</a>
+            <div>
+              <h4 style="margin: 0; color: var(--text-color);">WhatsApp</h4>
+              <p style="margin: 0; color: #64748b;">(51) 99242-8486</p>
             </div>
           </div>
           
-          <div class="canal-contato">
-            <div class="canal-icon">
-              <i class="fas fa-question-circle"></i>
+          <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: white; border-radius: 10px; border: 2px solid var(--border-color);">
+            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+              <i class="fab fa-instagram"></i>
             </div>
-            <div class="canal-info">
-              <h4>FAQ - Dúvidas Frequentes</h4>
-              <p>Encontre respostas para perguntas comuns</p>
+            <div>
+              <h4 style="margin: 0; color: var(--text-color);">Instagram</h4>
+              <p style="margin: 0; color: #64748b;">@fernandosoares__00</p>
             </div>
           </div>
         </div>
         
-        <div class="tempo-resposta">
+        <div style="margin-top: 2rem; padding: 1rem; background: white; border-radius: 10px; border: 2px solid var(--border-color);">
           <h4><i class="fas fa-clock"></i> Tempo de Resposta</h4>
           <p>Normalmente respondemos em até <strong>24 horas úteis</strong>.</p>
         </div>
-        
-        <div class="comunidade-info">
-          <h4><i class="fas fa-users"></i> Ajuda da Comunidade</h4>
-          <p>Muitas dúvidas podem ser respondidas mais rapidamente por outros membros da comunidade. Não hesite em postar suas perguntas no fórum!</p>
-          <a href="index.html" class="btn-comunidade">
-            <i class="fas fa-comments"></i> Acessar Comunidade
-          </a>
-        </div>
-      </div>
-      
-    </div>
-    
-    <!-- FAQ -->
-    <div class="faq-section">
-      <h3><i class="fas fa-question-circle"></i> Perguntas Frequentes</h3>
-      
-      <div class="faq-lista">
-        <div class="faq-item">
-          <button class="faq-pergunta">
-            Como faço para criar uma conta?
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="faq-resposta">
-            <p>Clique em "Cadastro" no menu superior e preencha o formulário com seus dados. É rápido e gratuito!</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <button class="faq-pergunta">
-            Posso postar anonimamente?
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="faq-resposta">
-            <p>Não, todos os posts são vinculados ao seu perfil. Isso ajuda a criar uma comunidade confiável e responsável.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <button class="faq-pergunta">
-            Como reportar conteúdo inadequado?
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="faq-resposta">
-            <p>Clique nos três pontos (...) no post ou comentário e selecione "Reportar". Nossa equipe de moderadores analisará o conteúdo.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <button class="faq-pergunta">
-            O site é realmente gratuito?
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="faq-resposta">
-            <p>Sim! O Blog de Estudos é completamente gratuito e sempre será. Acreditamos que a educação deve ser acessível a todos.</p>
-          </div>
-        </div>
       </div>
     </div>
-    
   </div>
-
 </main>
 
 <footer>
   <div class="footer-content">
-    <p>Blog de Estudos © 2026</p>
+    <div class="footer-logo">
+      <img src="img/logo.png" alt="Blog Estudos" class="footer-logo-img">
+      <p>Compartilhe • Aprenda • Evolua</p>
+    </div>
+    
     <div class="footer-links">
-      <a href="sobre.html">Sobre</a>
-      <a href="contato.html">Contato</a>
-      <a href="termos.html">Termos de Uso</a>
-      <a href="privacidade.html">Privacidade</a>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <a href="index.html">Início</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="contato.html">Contato</a>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="termos.html">Termos de Uso</a>
+        <a href="privacidade.html">Privacidade</a>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Redes Sociais</h4>
+        <div class="footer-social">
+          <a href="https://instagram.com/fernandosoares__00" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/5551992428486" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:fernando.salvadorsoares@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2026 Blog de Estudos. Todos os direitos reservados.</p>
     </div>
   </div>
 </footer>
 
 <script src="js/auth.js"></script>
 <script>
-  // Inicializa menu
   if (typeof atualizarMenu === 'function') {
     atualizarMenu();
   }
   
-  // Formulário de contato
-  document.addEventListener('DOMContentLoaded', function() {
-    const formContato = document.getElementById('formContato');
-    
-    if (formContato) {
-      formContato.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        const nome = document.getElementById('contatoNome').value;
-        const email = document.getElementById('contatoEmail').value;
-        const assunto = document.getElementById('contatoAssunto').value;
-        const mensagem = document.getElementById('contatoMensagem').value;
-        
-        // Aqui normalmente enviaria para um servidor
-        // Por enquanto, só mostra mensagem de sucesso
-        alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-        formContato.reset();
-      });
-    }
-    
-    // FAQ interativo
-    const faqPerguntas = document.querySelectorAll('.faq-pergunta');
-    
-    faqPerguntas.forEach(pergunta => {
-      pergunta.addEventListener('click', () => {
-        const resposta = pergunta.nextElementSibling;
-        const icon = pergunta.querySelector('i');
-        
-        resposta.style.display = resposta.style.display === 'block' ? 'none' : 'block';
-        icon.classList.toggle('fa-chevron-down');
-        icon.classList.toggle('fa-chevron-up');
-      });
-    });
+  document.getElementById('formContato').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+    this.reset();
   });
 </script>
+
 </body>
 </html>

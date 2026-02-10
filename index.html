@@ -3,292 +3,265 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog de Estudos - Compartilhe Conhecimento</title>
+  <title>Blog de Estudos - Organize seus estudos</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 <header class="topo">
-  <img src="img/logo.png" alt="Blog Estudos" class="logo-img">
-  <p class="descricao">Compartilhe • Aprenda • Conecte-se • Evolua</p>
-
-  <nav class="menu" id="menu-login">
-    <!-- Menu dinâmico será atualizado por auth.js -->
-  </nav>
+  <div class="topo-container">
+    <img src="img/logo.png" alt="Blog Estudos" class="logo-img">
+    
+    <nav class="menu" id="menu-login">
+      <a href="login.html">Login</a>
+      <a href="cadastro.html">Cadastro</a>
+    </nav>
+  </div>
 </header>
 
-<main class="container">
+<main class="main-content">
   
-  <!-- Seção Hero -->
-  <section class="hero">
-    <div class="hero-content">
-      <h2>Bem-vindo à comunidade de estudos!</h2>
-      <p>Compartilhe seus resumos, tire dúvidas e ajude outros estudantes.</p>
-      
-      <div class="hero-buttons" id="hero-buttons">
-        <!-- Botões dinâmicos baseados no login -->
-      </div>
+  <section class="hero-section">
+    <div class="hero-text">
+      <h1>Dicas Essenciais para <span class="destaque">Organizar</span> Seus Estudos</h1>
+      <p>Acompanhe nosso blog e descubra como otimizar sua rotina de estudo com planejamento e estratégia.</p>
+      <button class="btn-hero" onclick="scrollToContent()">
+        <i class="fas fa-arrow-down"></i> Explorar Conteúdo
+      </button>
     </div>
-    <div class="hero-image">
-      <i class="fas fa-graduation-cap"></i>
+    <div class="hero-images">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400" alt="Estudantes" class="hero-img hero-img-1">
+      <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=300" alt="Estudante" class="hero-img hero-img-2">
     </div>
   </section>
 
-  <!-- Seção Principal: Feed de Posts e Categorias -->
-  <div class="blog-layout">
-    
-    <!-- Coluna principal: Feed de posts -->
-    <div class="feed-posts">
-      <div class="feed-header">
-        <h3><i class="fas fa-newspaper"></i> Posts Recentes</h3>
-        <button class="btn-novo-post" id="btnNovoPost" onclick="mostrarFormularioPost()">
-          <i class="fas fa-plus"></i> Novo Post
-        </button>
-      </div>
-
-      <!-- Formulário de novo post (inicialmente oculto) -->
-      <div class="form-post-container" id="formPostContainer" style="display: none;">
-        <h4>Compartilhe seu conhecimento</h4>
-        <form id="formNovoPost" class="auth-form">
-          <div class="form-group">
-            <label for="postTitulo">Título do Post</label>
-            <input type="text" id="postTitulo" placeholder="Ex: Como estudar química orgânica" required>
-          </div>
-
-          <div class="form-group">
-            <label for="postMateria">Matéria</label>
-            <select id="postMateria" required>
-              <option value="">Selecione uma matéria</option>
-              <option value="portugues">📘 Português</option>
-              <option value="matematica">📐 Matemática</option>
-              <option value="ciencias">🧪 Ciências</option>
-              <option value="historia">📜 História</option>
-              <option value="geografia">🌍 Geografia</option>
-              <option value="ingles">🇬🇧 Inglês</option>
-              <option value="fisica">⚙️ Física</option>
-              <option value="quimica">⚗️ Química</option>
-              <option value="biologia">🧬 Biologia</option>
-              <option value="outros">📚 Outros</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="postConteudo">Conteúdo</label>
-            <textarea id="postConteudo" rows="5" placeholder="Compartilhe seu resumo, dica ou pergunta..." required></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="postTags">Tags (separadas por vírgula)</label>
-            <input type="text" id="postTags" placeholder="Ex: resumo, dica, vestibular, enem">
-          </div>
-
-          <div class="form-buttons">
-            <button type="submit" class="btn-login">
-              <i class="fas fa-paper-plane"></i> Publicar
-            </button>
-            <button type="button" class="btn-cancelar" onclick="esconderFormularioPost()">
-              Cancelar
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <!-- Área onde os posts serão exibidos -->
-      <div class="posts-container" id="postsContainer">
-        <!-- Os posts serão carregados aqui via JavaScript -->
-        <div class="post-vazio">
-          <i class="fas fa-comment-alt"></i>
-          <h4>Nenhum post ainda</h4>
-          <p>Seja o primeiro a compartilhar conhecimento!</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Coluna lateral: Categorias e informações -->
-    <div class="sidebar">
+  <section class="categorias-nav" id="content">
+    <div class="nav-tabs">
+      <button class="tab-btn active"><i class="fas fa-home"></i> Início</button>
+      <button class="tab-btn"><i class="fas fa-clock"></i> Posts recentes</button>
+      <button class="tab-btn"><i class="fas fa-fire"></i> Mais lidos</button>
+      <button class="tab-btn"><i class="fas fa-star"></i> Destaques</button>
       
-      <!-- Categorias -->
-      <div class="sidebar-box">
-        <h4><i class="fas fa-folder"></i> Categorias de Estudo</h4>
-        <div class="lista-categorias">
-          <a class="categoria" href="materias/portugues.html">
-            <span class="categoria-icon">📘</span>
-            <span class="categoria-texto">Português</span>
-            <span class="categoria-count" id="count-portugues">0</span>
-          </a>
-
-          <a class="categoria" href="materias/matematica.html">
-            <span class="categoria-icon">📐</span>
-            <span class="categoria-texto">Matemática</span>
-            <span class="categoria-count" id="count-matematica">0</span>
-          </a>
-
-          <a class="categoria" href="materias/ciencias.html">
-            <span class="categoria-icon">🧪</span>
-            <span class="categoria-texto">Ciências</span>
-            <span class="categoria-count" id="count-ciencias">0</span>
-          </a>
-
-          <a class="categoria" href="materias/historia.html">
-            <span class="categoria-icon">📜</span>
-            <span class="categoria-texto">História</span>
-            <span class="categoria-count" id="count-historia">0</span>
-          </a>
-
-          <a class="categoria" href="materias/geografia.html">
-            <span class="categoria-icon">🌍</span>
-            <span class="categoria-texto">Geografia</span>
-            <span class="categoria-count" id="count-geografia">0</span>
-          </a>
-
-          <a class="categoria" href="materias/ingles.html">
-            <span class="categoria-icon">🇬🇧</span>
-            <span class="categoria-texto">Inglês</span>
-            <span class="categoria-count" id="count-ingles">0</span>
-          </a>
-
-          <a class="categoria" href="materias/fisica.html">
-            <span class="categoria-icon">⚙️</span>
-            <span class="categoria-texto">Física</span>
-            <span class="categoria-count" id="count-fisica">0</span>
-          </a>
-
-          <a class="categoria" href="materias/quimica.html">
-            <span class="categoria-icon">⚗️</span>
-            <span class="categoria-texto">Química</span>
-            <span class="categoria-count" id="count-quimica">0</span>
-          </a>
-
-          <a class="categoria" href="materias/biologia.html">
-            <span class="categoria-icon">🧬</span>
-            <span class="categoria-texto">Biologia</span>
-            <span class="categoria-count" id="count-biologia">0</span>
-          </a>
+      <div class="dropdown">
+        <button class="tab-btn dropdown-toggle">
+          <i class="fas fa-folder"></i> Categorias <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="materias/portugues.html">📘 Português</a>
+          <a href="materias/matematica.html">📐 Matemática</a>
+          <a href="materias/ciencias.html">🧪 Ciências</a>
+          <a href="materias/historia.html">📜 História</a>
+          <a href="materias/geografia.html">🌍 Geografia</a>
+          <a href="materias/ingles.html">🇬🇧 Inglês</a>
+          <a href="materias/fisica.html">⚙️ Física</a>
+          <a href="materias/quimica.html">⚗️ Química</a>
+          <a href="materias/biologia.html">🧬 Biologia</a>
         </div>
       </div>
 
-      <!-- Usuários Ativos -->
-      <div class="sidebar-box" id="usuariosAtivosBox" style="display: none;">
-        <h4><i class="fas fa-users"></i> Estudantes Ativos</h4>
-        <div class="lista-usuarios" id="listaUsuarios">
-          <!-- Usuários serão carregados aqui -->
-        </div>
-      </div>
+      <button class="tab-btn" onclick="toggleTema()" style="margin-left: auto;">
+        <i class="fas fa-moon" id="tema-icon"></i>
+      </button>
+    </div>
+  </section>
 
-      <!-- Dicas Rápidas -->
-      <div class="sidebar-box">
-        <h4><i class="fas fa-lightbulb"></i> Dica do Dia</h4>
-        <div class="dica-box">
-          <p id="dicaDoDia">Estude em períodos curtos (25-30 minutos) com intervalos de 5 minutos. Isso melhora a retenção do conteúdo!</p>
+  <section class="posts-grid">
+    <div class="container-posts">
+      
+      <article class="post-card featured">
+        <div class="post-image">
+          <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600" alt="Técnicas de Estudo">
+          <span class="post-badge">Destaque</span>
         </div>
-      </div>
-
-      <!-- Estatísticas -->
-      <div class="sidebar-box">
-        <h4><i class="fas fa-chart-bar"></i> Estatísticas</h4>
-        <div class="estatisticas">
-          <div class="estatistica-item">
-            <span class="estatistica-num" id="totalPosts">0</span>
-            <span class="estatistica-label">Posts</span>
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-categoria">📚 Dicas de Estudo</span>
+            <span class="post-data">05 Fev 2026</span>
           </div>
-          <div class="estatistica-item">
-            <span class="estatistica-num" id="totalUsuarios">0</span>
-            <span class="estatistica-label">Estudantes</span>
-          </div>
-          <div class="estatistica-item">
-            <span class="estatistica-num" id="totalComentarios">0</span>
-            <span class="estatistica-label">Comentários</span>
-          </div>
+          <h2 class="post-titulo">5 Técnicas Comprovadas para Melhorar seu Rendimento nos Estudos</h2>
+          <p class="post-resumo">Descubra métodos científicos que vão transformar sua forma de estudar e aumentar sua produtividade.</p>
+          <a href="post.html" class="post-link">Ler mais →</a>
         </div>
-      </div>
+      </article>
+
+      <article class="post-card">
+        <div class="post-image">
+          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400" alt="Planejamento">
+        </div>
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-categoria">📝 Organização</span>
+            <span class="post-data">03 Fev 2026</span>
+          </div>
+          <h3 class="post-titulo">Como Criar um Cronograma de Estudos Eficiente</h3>
+          <p class="post-resumo">Aprenda a organizar seu tempo de forma inteligente e produtiva.</p>
+          <a href="post.html" class="post-link">Ler mais →</a>
+        </div>
+      </article>
+
+      <article class="post-card">
+        <div class="post-image">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400" alt="Matemática">
+        </div>
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-categoria">📐 Matemática</span>
+            <span class="post-data">01 Fev 2026</span>
+          </div>
+          <h3 class="post-titulo">Macetes para Resolver Equações do 2º Grau Rapidamente</h3>
+          <p class="post-resumo">Técnicas práticas que vão facilitar seus cálculos.</p>
+          <a href="post.html" class="post-link">Ler mais →</a>
+        </div>
+      </article>
+
+      <article class="post-card">
+        <div class="post-image">
+          <img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=400" alt="Redação">
+        </div>
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-categoria">📘 Português</span>
+            <span class="post-data">30 Jan 2026</span>
+          </div>
+          <h3 class="post-titulo">Guia Completo: Como Escrever uma Redação Nota 1000</h3>
+          <p class="post-resumo">Estrutura, argumentação e dicas de correção.</p>
+          <a href="post.html" class="post-link">Ler mais →</a>
+        </div>
+      </article>
+
+      <article class="post-card">
+        <div class="post-image">
+          <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400" alt="Memória">
+        </div>
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-categoria">🧠 Produtividade</span>
+            <span class="post-data">28 Jan 2026</span>
+          </div>
+          <h3 class="post-titulo">Técnicas de Memorização que Realmente Funcionam</h3>
+          <p class="post-resumo">Métodos comprovados para fixar conteúdo de forma eficaz.</p>
+          <a href="post.html" class="post-link">Ler mais →</a>
+        </div>
+      </article>
+
+      <article class="post-card">
+        <div class="post-image">
+          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400" alt="Ciências">
+        </div>
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="post-categoria">🧪 Ciências</span>
+            <span class="post-data">26 Jan 2026</span>
+          </div>
+          <h3 class="post-titulo">Resumo: Tabela Periódica Simplificada</h3>
+          <p class="post-resumo">Entenda os grupos e períodos de forma descomplicada.</p>
+          <a href="post.html" class="post-link">Ler mais →</a>
+        </div>
+      </article>
 
     </div>
-  </div>
+
+    <div class="ver-mais-container">
+      <button class="btn-ver-mais">
+        <i class="fas fa-plus"></i> Ver mais posts
+      </button>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Faça Parte da Nossa Comunidade</h2>
+      <p>Cadastre-se gratuitamente e tenha acesso a todos os conteúdos, crie posts e compartilhe conhecimento!</p>
+      <div class="cta-buttons">
+        <a href="cadastro.html" class="btn-cta-primary">
+          <i class="fas fa-user-plus"></i> Criar Conta Grátis
+        </a>
+        <a href="sobre.html" class="btn-cta-secondary">
+          <i class="fas fa-info-circle"></i> Saiba Mais
+        </a>
+      </div>
+    </div>
+  </section>
 
 </main>
 
 <footer>
   <div class="footer-content">
-    <p>Blog de Estudos © 2026 </p>
+    <div class="footer-logo">
+      <img src="img/logo.png" alt="Blog Estudos" class="footer-logo-img">
+      <p>Compartilhe • Aprenda • Evolua</p>
+    </div>
+    
     <div class="footer-links">
-
-      <a href="sobre.html">Sobre</a>
-      <a href="contato.html">Contato</a>
-      <a href="termos.html">Termos de Uso</a>
-      <a href="privacidade.html">Privacidade</a>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <a href="index.html">Início</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="contato.html">Contato</a>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="termos.html">Termos de Uso</a>
+        <a href="privacidade.html">Privacidade</a>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Redes Sociais</h4>
+        <div class="footer-social">
+          <a href="https://instagram.com/fernandosoares__00" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/5551992428486" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:fernando.salvadorsoares@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2026 Blog de Estudos. Todos os direitos reservados.</p>
     </div>
   </div>
 </footer>
 
-<!-- Scripts -->
 <script src="js/auth.js"></script>
-<script src="js/blog.js"></script>
 <script>
-  // Script para inicializar a página
   document.addEventListener('DOMContentLoaded', function() {
-    // Atualiza menu
     if (typeof atualizarMenu === 'function') {
       atualizarMenu();
     }
-    
-    // Atualiza botões do hero baseados no login
-    atualizarBotoesHero();
-    
-    // Carrega posts
-    if (typeof carregarPosts === 'function') {
-      carregarPosts();
-    }
-    
-    // Carrega estatísticas
-    if (typeof carregarEstatisticas === 'function') {
-      carregarEstatisticas();
+
+    const temaSalvo = localStorage.getItem('tema');
+    if (temaSalvo === 'escuro') {
+      document.body.classList.add('tema-escuro');
+      document.getElementById('tema-icon').classList.replace('fa-moon', 'fa-sun');
     }
   });
 
-  function atualizarBotoesHero() {
-    const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
-    const heroButtons = document.getElementById('hero-buttons');
+  function scrollToContent() {
+    document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function toggleTema() {
+    document.body.classList.toggle('tema-escuro');
+    const icon = document.getElementById('tema-icon');
     
-    if (usuario) {
-      heroButtons.innerHTML = `
-        <button class="btn-hero" onclick="mostrarFormularioPost()">
-          <i class="fas fa-plus"></i> Criar Post
-        </button>
-        <button class="btn-hero-secondary" onclick="window.location.href='perfil.html'">
-          <i class="fas fa-user"></i> Meu Perfil
-        </button>
-      `;
+    if (document.body.classList.contains('tema-escuro')) {
+      icon.classList.replace('fa-moon', 'fa-sun');
+      localStorage.setItem('tema', 'escuro');
     } else {
-      heroButtons.innerHTML = `
-        <button class="btn-hero" onclick="window.location.href='cadastro.html'">
-          <i class="fas fa-user-plus"></i> Cadastre-se
-        </button>
-        <button class="btn-hero-secondary" onclick="window.location.href='login.html'">
-          <i class="fas fa-sign-in-alt"></i> Fazer Login
-        </button>
-      `;
+      icon.classList.replace('fa-sun', 'fa-moon');
+      localStorage.setItem('tema', 'claro');
     }
   }
 
-  function mostrarFormularioPost() {
-    const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
-    
-    if (!usuario) {
-      alert('Você precisa estar logado para criar um post!');
-      window.location.href = 'login.html';
-      return;
-    }
-    
-    document.getElementById('formPostContainer').style.display = 'block';
-    document.getElementById('btnNovoPost').style.display = 'none';
-    window.scrollTo({ top: 300, behavior: 'smooth' });
-  }
+  document.querySelector('.dropdown-toggle').addEventListener('click', function(e) {
+    e.stopPropagation();
+    this.parentElement.classList.toggle('active');
+  });
 
-  function esconderFormularioPost() {
-    document.getElementById('formPostContainer').style.display = 'none';
-    document.getElementById('btnNovoPost').style.display = 'flex';
-  }
+  document.addEventListener('click', function() {
+    document.querySelector('.dropdown').classList.remove('active');
+  });
 </script>
 
 </body>
