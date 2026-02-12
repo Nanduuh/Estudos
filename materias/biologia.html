@@ -3,76 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biologia - Blog de Estudos</title>
+  <title>🧬 Biologia - Blog de Estudos</title>
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 <header class="topo">
-  <h1 class="logo">Blog<span>Estudos</span></h1>
-  <p class="descricao">Resumos • Matérias • Dicas • Organização</p>
-
-  <nav class="menu" id="menu-login">
-    <a href="../login.html">Login</a>
-    <a href="../cadastro.html">Cadastro</a>
-  </nav>
+  <div class="topo-container">
+    <img src="../img/logo.png" alt="Blog Estudos" class="logo-img" onclick="window.location.href='../index.html'">
+    <nav class="menu">
+      <a href="../index.html">Início</a>
+    </nav>
+  </div>
 </header>
 
-<main class="materia-container">
-  
-  <div class="materia-header">
-    <div class="breadcrumb">
-      <a href="../index.html">← Início</a>
+<main class="container">
+  <div class="breadcrumb">
+    <a href="../index.html"><i class="fas fa-arrow-left"></i> Voltar</a>
+  </div>
+
+  <h1 class="titulo-secao">🧬 Biologia</h1>
+
+  <div class="posts-grid">
+    <div class="container-posts" id="posts-container">
+      <!-- Posts serão carregados aqui -->
     </div>
-    <h1>🧬 Biologia</h1>
   </div>
-
-  <div class="materia-conteudo">
-    <h2>Conteúdos de Biologia</h2>
-
-    <h3>Células</h3>
-    <p>Estrutura celular, tipos de células e funções.</p>
-    <p>As células são as unidades básicas da vida. Existem dois tipos principais: células procariontes (sem núcleo definido) e células eucariontes (com núcleo definido).</p>
-
-    <h3>Genética</h3>
-    <p>DNA, genes, hereditariedade e leis de Mendel.</p>
-    <p>A genética estuda como as características são transmitidas de pais para filhos através dos genes, que são segmentos de DNA.</p>
-
-    <h3>Ecologia</h3>
-    <p>Meio ambiente, ecossistemas e cadeias alimentares.</p>
-    <p>A ecologia investiga as relações entre os seres vivos e o ambiente em que vivem, incluindo conceitos como habitat, nicho ecológico e biodiversidade.</p>
-
-    <h2>Principais Tópicos</h2>
-    
-    <ul>
-      <li>Citologia e estrutura celular</li>
-      <li>Metabolismo energético</li>
-      <li>Divisão celular (mitose e meiose)</li>
-      <li>Genética mendeliana</li>
-      <li>Ecossistemas e biomas</li>
-      <li>Evolução das espécies</li>
-      <li>Sistemas do corpo humano</li>
-    </ul>
-
-    <h2>Dicas de Estudo</h2>
-    
-    <p><strong>Faça esquemas visuais:</strong> Desenhe células, ciclos e processos biológicos para memorizar melhor.</p>
-    <p><strong>Use mnemônicos:</strong> Crie frases para lembrar sequências e processos complexos.</p>
-    <p><strong>Estude com exemplos:</strong> Relacione conceitos teóricos com exemplos práticos do dia a dia.</p>
-
-  </div>
-
 </main>
 
 <footer>
-  <p>Blog de Estudos © 2026</p>
+  <div class="footer-content">
+    <div class="footer-bottom">
+      <p>© 2026 Blog de Estudos. Todos os direitos reservados.</p>
+    </div>
+  </div>
 </footer>
 
-<script src="../js/auth.js"></script>
+<script src="../js/posts.js"></script>
 <script>
-  if (typeof atualizarMenu === 'function') {
-    atualizarMenu();
+  function carregarMateria() {
+    const container = document.getElementById('posts-container');
+    const posts = pegarPosts().filter(p => p.materia === 'biologia');
+
+    if (posts.length === 0) {
+      container.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+          <i class="fas fa-inbox" style="font-size: 3rem; color: #cbd5e1; margin-bottom: 1rem;"></i>
+          <h3 style="color: #64748b;">Nenhum post de 🧬 Biologia ainda</h3>
+          <p style="color: #94a3b8;">Seja o primeiro a criar um post sobre essa matéria!</p>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = posts.map(post => {
+      const curtidas = pegarCurtidas(post.id);
+      return `
+        <article class="post-card">
+          ${post.imagem ? `
+            <div class="post-image">
+              <img src="${post.imagem}" alt="${post.titulo}">
+            </div>
+          ` : ''}
+          <div class="post-content">
+            <div class="post-meta">
+              <span class="post-categoria">${post.categoria}</span>
+              <span class="post-data">${formatarData(post.data)}</span>
+            </div>
+            <h3 class="post-titulo">${post.titulo}</h3>
+            <p class="post-resumo">${post.resumo}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+              <a href="../post.html?id=${post.id}" class="post-link">Ler mais →</a>
+              <span style="color: #94a3b8; font-size: 0.9rem;">
+                <i class="fas fa-heart"></i> ${curtidas}
+              </span>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join('');
   }
+
+  function formatarData(dataISO) {
+    const data = new Date(dataISO);
+    return data.toLocaleDateString('pt-BR');
+  }
+
+  carregarMateria();
 </script>
 
 </body>

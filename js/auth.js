@@ -1,78 +1,69 @@
-// Sistema de autenticação para o Blog de Estudos
-
-// Função para verificar se há um usuário logado
-function verificarLogin() {
-  const usuarioLogado = localStorage.getItem('usuarioLogado');
-  return usuarioLogado ? JSON.parse(usuarioLogado) : null;
-}
-
-// Função para fazer logout
-function fazerLogout() {
-  localStorage.removeItem('usuarioLogado');
-  window.location.href = 'index.html';
-}
-
-// Função para atualizar o menu de navegação
+// Atualiza menu (login / perfil)
 function atualizarMenu() {
-  const menu = document.getElementById('menu-login');
-  const usuario = verificarLogin();
-  
-  if (menu) {
-      if (usuario) {
-          // Usuário logado - mostra perfil e opção de logout
-          menu.innerHTML = `
-              <a href="perfil.html" class="menu-usuario">
-                  👤 ${usuario.usuario}
-              </a>
-              <a href="#" onclick="fazerLogout()">Sair</a>
-          `;
-      } else {
-          // Usuário não logado - mostra login e cadastro
-          menu.innerHTML = `
-              <a href="login.html">Login</a>
-              <a href="cadastro.html">Cadastro</a>
-          `;
-      }
+  const menu = document.getElementById("menu-login");
+  const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+  if (!menu) return;
+
+  if (usuario) {
+    menu.innerHTML = `
+      <a href="perfil.html">${usuario.nome}</a>
+      <a href="#" onclick="logout()">Sair</a>
+    `;
+  } else {
+    menu.innerHTML = `
+      <a href="login.html">Login</a>
+      <a href="cadastro.html">Cadastro</a>
+    `;
   }
 }
 
-// Função para proteger páginas que requerem login
-function protegerPagina() {
-  const usuario = verificarLogin();
+function logout() {
+  localStorage.removeItem("usuarioLogado");
+  window.location.href = "index.html";
+}
+
+// Cadastro
+function cadastrar(event) {
+  event.preventDefault();
+
+  const nome = document.getElementById("nome").value;
+  const email = document.getElementById("email").value;
+  const senha = document.getElementById("senha").value;
+
+  let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const existe = usuarios.find(u => u.email === email);
+  if (existe) {
+    alert("Email já cadastrado!");
+    return;
+  }
+
+  usuarios.push({ nome, email, senha });
+  localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+  alert("Cadastro realizado com sucesso!");
+  window.location.href = "login.html";
+}
+
+// Login
+function login(event) {
+  event.preventDefault();
+
+  const email = document.getElementById("email").value;
+  const senha = document.getElementById("senha").value;
+
+  let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const usuario = usuarios.find(
+    u => u.email === email && u.senha === senha
+  );
+
   if (!usuario) {
-      alert('Você precisa estar logado para acessar esta página!');
-      window.location.href = 'login.html';
-      return false;
+    alert("Email ou senha inválidos!");
+    return;
   }
-  return true;
+
+  localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+  window.location.href = "index.html";
 }
-
-// Função para redirecionar se já estiver logado
-function redirecionarSeLogado() {
-  const usuario = verificarLogin();
-  if (usuario && (window.location.pathname.includes('login.html') || 
-                  window.location.pathname.includes('cadastro.html'))) {
-      alert('Você já está logado!');
-      window.location.href = 'index.html';
-  }
-}
-
-// Inicializa quando a página carrega
-document.addEventListener('DOMContentLoaded', function() {
-  atualizarMenu();
-  redirecionarSeLogado();
-  
-  // Adiciona evento de logout a todos os links "Sair"
-  document.addEventListener('click', function(e) {
-      if (e.target.textContent === 'Sair' || e.target.textContent.includes('Sair')) {
-          e.preventDefault();
-          fazerLogout();
-      }
-  });
-});
-
-// Exporta funções para uso global
-window.verificarLogin = verificarLogin;
-window.fazerLogout = fazerLogout;
-window.atualizarMenu = atualizarMenu;
-window.protegerPagina = protegerPagina;

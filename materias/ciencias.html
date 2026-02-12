@@ -3,76 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ciências - Blog de Estudos</title>
+  <title>🧪 Ciências - Blog de Estudos</title>
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 <header class="topo">
-  <h1 class="logo">Blog<span>Estudos</span></h1>
-  <p class="descricao">Resumos • Matérias • Dicas • Organização</p>
-
-  <nav class="menu" id="menu-login">
-    <a href="../login.html">Login</a>
-    <a href="../cadastro.html">Cadastro</a>
-  </nav>
+  <div class="topo-container">
+    <img src="../img/logo.png" alt="Blog Estudos" class="logo-img" onclick="window.location.href='../index.html'">
+    <nav class="menu">
+      <a href="../index.html">Início</a>
+    </nav>
+  </div>
 </header>
 
-<main class="materia-container">
-  
-  <div class="materia-header">
-    <div class="breadcrumb">
-      <a href="../index.html">← Início</a>
+<main class="container">
+  <div class="breadcrumb">
+    <a href="../index.html"><i class="fas fa-arrow-left"></i> Voltar</a>
+  </div>
+
+  <h1 class="titulo-secao">🧪 Ciências</h1>
+
+  <div class="posts-grid">
+    <div class="container-posts" id="posts-container">
+      <!-- Posts serão carregados aqui -->
     </div>
-    <h1>🔬 Ciências</h1>
   </div>
-
-  <div class="materia-conteudo">
-    <h2>Conteúdos de Ciências</h2>
-
-    <h3>Método Científico</h3>
-    <p>Observação, hipótese, experimentação e conclusão.</p>
-    <p>O método científico é um conjunto de etapas que orientam a investigação científica, desde a observação do problema até a conclusão.</p>
-
-    <h3>Corpo Humano</h3>
-    <p>Sistemas do corpo, órgãos e funções vitais.</p>
-    <p>Estuda a estrutura e funcionamento dos sistemas do corpo humano, como o sistema respiratório, circulatório e digestivo.</p>
-
-    <h3>Meio Ambiente</h3>
-    <p>Recursos naturais, sustentabilidade e ecologia básica.</p>
-    <p>Aborda a relação entre o ser humano e o meio ambiente, enfatizando a importância da conservação e do uso sustentável dos recursos.</p>
-
-    <h2>Principais Tópicos</h2>
-    
-    <ul>
-      <li>Método científico e investigação</li>
-      <li>Sistemas do corpo humano</li>
-      <li>Saúde e prevenção de doenças</li>
-      <li>Recursos naturais e sustentabilidade</li>
-      <li>Energia e transformações</li>
-      <li>Astronomia básica</li>
-      <li>Seres vivos e classificação</li>
-    </ul>
-
-    <h2>Dicas de Estudo</h2>
-    
-    <p><strong>Experimentos simples:</strong> Realize experimentos práticos para entender conceitos científicos.</p>
-    <p><strong>Mapas mentais:</strong> Crie mapas mentais para conectar diferentes tópicos de ciências.</p>
-    <p><strong>Assista documentários:</strong> Use vídeos e documentários para visualizar fenômenos científicos.</p>
-
-  </div>
-
 </main>
 
 <footer>
-  <p>Blog de Estudos © 2026</p>
+  <div class="footer-content">
+    <div class="footer-bottom">
+      <p>© 2026 Blog de Estudos. Todos os direitos reservados.</p>
+    </div>
+  </div>
 </footer>
 
-<script src="../js/auth.js"></script>
+<script src="../js/posts.js"></script>
 <script>
-  if (typeof atualizarMenu === 'function') {
-    atualizarMenu();
+  function carregarMateria() {
+    const container = document.getElementById('posts-container');
+    const posts = pegarPosts().filter(p => p.materia === 'ciencias');
+
+    if (posts.length === 0) {
+      container.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+          <i class="fas fa-inbox" style="font-size: 3rem; color: #cbd5e1; margin-bottom: 1rem;"></i>
+          <h3 style="color: #64748b;">Nenhum post de 🧪 Ciências ainda</h3>
+          <p style="color: #94a3b8;">Seja o primeiro a criar um post sobre essa matéria!</p>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = posts.map(post => {
+      const curtidas = pegarCurtidas(post.id);
+      return `
+        <article class="post-card">
+          ${post.imagem ? `
+            <div class="post-image">
+              <img src="${post.imagem}" alt="${post.titulo}">
+            </div>
+          ` : ''}
+          <div class="post-content">
+            <div class="post-meta">
+              <span class="post-categoria">${post.categoria}</span>
+              <span class="post-data">${formatarData(post.data)}</span>
+            </div>
+            <h3 class="post-titulo">${post.titulo}</h3>
+            <p class="post-resumo">${post.resumo}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+              <a href="../post.html?id=${post.id}" class="post-link">Ler mais →</a>
+              <span style="color: #94a3b8; font-size: 0.9rem;">
+                <i class="fas fa-heart"></i> ${curtidas}
+              </span>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join('');
   }
+
+  function formatarData(dataISO) {
+    const data = new Date(dataISO);
+    return data.toLocaleDateString('pt-BR');
+  }
+
+  carregarMateria();
 </script>
 
 </body>

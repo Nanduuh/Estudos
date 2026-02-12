@@ -11,11 +11,11 @@
 
 <header class="topo">
   <div class="topo-container">
-    <img src="img/logo.png" alt="Blog Estudos" class="logo-img">
+    <img src="img/logo.png" alt="Blog Estudos" class="logo-img" onerror="this.src='https://via.placeholder.com/160x60?text=📚+Blog'">
     
     <nav class="menu" id="menu-login">
-      <a href="login.html">Login</a>
-      <a href="cadastro.html">Cadastro</a>
+      <a href="login.html"><i class="fas fa-user"></i> Login</a>
+      <a href="cadastro.html"><i class="fas fa-user-plus"></i> Cadastro</a>
     </nav>
   </div>
 </header>
@@ -38,25 +38,25 @@
 
   <section class="categorias-nav" id="content">
     <div class="nav-tabs">
-      <button class="tab-btn active"><i class="fas fa-home"></i> Início</button>
-      <button class="tab-btn"><i class="fas fa-clock"></i> Posts recentes</button>
-      <button class="tab-btn"><i class="fas fa-fire"></i> Mais lidos</button>
-      <button class="tab-btn"><i class="fas fa-star"></i> Destaques</button>
+      <button class="tab-btn active" onclick="filtrarPosts('todos', event)"><i class="fas fa-home"></i> Início</button>
+      <button class="tab-btn" onclick="filtrarPosts('recentes', event)"><i class="fas fa-clock"></i> Posts recentes</button>
+      <button class="tab-btn" onclick="filtrarPosts('maisLidos', event)"><i class="fas fa-fire"></i> Mais lidos</button>
+      <button class="tab-btn" onclick="filtrarPosts('destaques', event)"><i class="fas fa-star"></i> Destaques</button>
       
-      <div class="dropdown">
-        <button class="tab-btn dropdown-toggle">
+      <div class="dropdown" id="dropdown-categorias">
+        <button class="tab-btn dropdown-toggle" id="dropdown-btn">
           <i class="fas fa-folder"></i> Categorias <i class="fas fa-chevron-down"></i>
         </button>
-        <div class="dropdown-content">
-          <a href="materias/portugues.html">📘 Português</a>
-          <a href="materias/matematica.html">📐 Matemática</a>
-          <a href="materias/ciencias.html">🧪 Ciências</a>
-          <a href="materias/historia.html">📜 História</a>
-          <a href="materias/geografia.html">🌍 Geografia</a>
-          <a href="materias/ingles.html">🇬🇧 Inglês</a>
-          <a href="materias/fisica.html">⚙️ Física</a>
-          <a href="materias/quimica.html">⚗️ Química</a>
-          <a href="materias/biologia.html">🧬 Biologia</a>
+        <div class="dropdown-content" id="dropdown-content">
+          <a href="materias/portugues.html"><span>📘</span> Português</a>
+          <a href="materias/matematica.html"><span>📐</span> Matemática</a>
+          <a href="materias/ciencias.html"><span>🧪</span> Ciências</a>
+          <a href="materias/historia.html"><span>📜</span> História</a>
+          <a href="materias/geografia.html"><span>🌍</span> Geografia</a>
+          <a href="materias/ingles.html"><span>🇬🇧</span> Inglês</a>
+          <a href="materias/fisica.html"><span>⚙️</span> Física</a>
+          <a href="materias/quimica.html"><span>⚗️</span> Química</a>
+          <a href="materias/biologia.html"><span>🧬</span> Biologia</a>
         </div>
       </div>
 
@@ -67,103 +67,12 @@
   </section>
 
   <section class="posts-grid">
-    <div class="container-posts">
-      
-      <article class="post-card featured">
-        <div class="post-image">
-          <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600" alt="Técnicas de Estudo">
-          <span class="post-badge">Destaque</span>
-        </div>
-        <div class="post-content">
-          <div class="post-meta">
-            <span class="post-categoria">📚 Dicas de Estudo</span>
-            <span class="post-data">05 Fev 2026</span>
-          </div>
-          <h2 class="post-titulo">5 Técnicas Comprovadas para Melhorar seu Rendimento nos Estudos</h2>
-          <p class="post-resumo">Descubra métodos científicos que vão transformar sua forma de estudar e aumentar sua produtividade.</p>
-          <a href="post.html" class="post-link">Ler mais →</a>
-        </div>
-      </article>
-
-      <article class="post-card">
-        <div class="post-image">
-          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400" alt="Planejamento">
-        </div>
-        <div class="post-content">
-          <div class="post-meta">
-            <span class="post-categoria">📝 Organização</span>
-            <span class="post-data">03 Fev 2026</span>
-          </div>
-          <h3 class="post-titulo">Como Criar um Cronograma de Estudos Eficiente</h3>
-          <p class="post-resumo">Aprenda a organizar seu tempo de forma inteligente e produtiva.</p>
-          <a href="post.html" class="post-link">Ler mais →</a>
-        </div>
-      </article>
-
-      <article class="post-card">
-        <div class="post-image">
-          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400" alt="Matemática">
-        </div>
-        <div class="post-content">
-          <div class="post-meta">
-            <span class="post-categoria">📐 Matemática</span>
-            <span class="post-data">01 Fev 2026</span>
-          </div>
-          <h3 class="post-titulo">Macetes para Resolver Equações do 2º Grau Rapidamente</h3>
-          <p class="post-resumo">Técnicas práticas que vão facilitar seus cálculos.</p>
-          <a href="post.html" class="post-link">Ler mais →</a>
-        </div>
-      </article>
-
-      <article class="post-card">
-        <div class="post-image">
-          <img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=400" alt="Redação">
-        </div>
-        <div class="post-content">
-          <div class="post-meta">
-            <span class="post-categoria">📘 Português</span>
-            <span class="post-data">30 Jan 2026</span>
-          </div>
-          <h3 class="post-titulo">Guia Completo: Como Escrever uma Redação Nota 1000</h3>
-          <p class="post-resumo">Estrutura, argumentação e dicas de correção.</p>
-          <a href="post.html" class="post-link">Ler mais →</a>
-        </div>
-      </article>
-
-      <article class="post-card">
-        <div class="post-image">
-          <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400" alt="Memória">
-        </div>
-        <div class="post-content">
-          <div class="post-meta">
-            <span class="post-categoria">🧠 Produtividade</span>
-            <span class="post-data">28 Jan 2026</span>
-          </div>
-          <h3 class="post-titulo">Técnicas de Memorização que Realmente Funcionam</h3>
-          <p class="post-resumo">Métodos comprovados para fixar conteúdo de forma eficaz.</p>
-          <a href="post.html" class="post-link">Ler mais →</a>
-        </div>
-      </article>
-
-      <article class="post-card">
-        <div class="post-image">
-          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400" alt="Ciências">
-        </div>
-        <div class="post-content">
-          <div class="post-meta">
-            <span class="post-categoria">🧪 Ciências</span>
-            <span class="post-data">26 Jan 2026</span>
-          </div>
-          <h3 class="post-titulo">Resumo: Tabela Periódica Simplificada</h3>
-          <p class="post-resumo">Entenda os grupos e períodos de forma descomplicada.</p>
-          <a href="post.html" class="post-link">Ler mais →</a>
-        </div>
-      </article>
-
+    <div class="container-posts" id="container-posts">
+      <!-- Posts serão carregados pelo JavaScript -->
     </div>
 
     <div class="ver-mais-container">
-      <button class="btn-ver-mais">
+      <button class="btn-ver-mais" onclick="carregarMaisPosts()" id="btnVerMais">
         <i class="fas fa-plus"></i> Ver mais posts
       </button>
     </div>
@@ -189,7 +98,7 @@
 <footer>
   <div class="footer-content">
     <div class="footer-logo">
-      <img src="img/logo.png" alt="Blog Estudos" class="footer-logo-img">
+      <img src="img/logo.png" alt="Blog Estudos" class="footer-logo-img" onerror="this.src='https://via.placeholder.com/140x50?text=📚'">
       <p>Compartilhe • Aprenda • Evolua</p>
     </div>
     
@@ -199,6 +108,7 @@
         <a href="index.html">Início</a>
         <a href="sobre.html">Sobre</a>
         <a href="contato.html">Contato</a>
+        <a href="perfil.html">Perfil</a>
       </div>
       
       <div class="footer-col">
@@ -223,24 +133,236 @@
   </div>
 </footer>
 
-<script src="js/auth.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    if (typeof atualizarMenu === 'function') {
-      atualizarMenu();
+  // ============================================
+  // BANCO DE DADOS DE POSTS
+  // ============================================
+  
+  const posts = [
+    {
+      id: 1,
+      titulo: "5 Técnicas Comprovadas para Melhorar seu Rendimento nos Estudos",
+      resumo: "Descubra métodos científicos que vão transformar sua forma de estudar e aumentar sua produtividade.",
+      categoria: "📚 Dicas de Estudo",
+      materia: "geral",
+      data: "05 Fev 2026",
+      imagem: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600",
+      destaque: true,
+      curtidas: 42,
+      visualizacoes: 1200
+    },
+    {
+      id: 2,
+      titulo: "Macetes para Resolver Equações do 2º Grau Rapidamente",
+      resumo: "Técnicas práticas que vão facilitar seus cálculos.",
+      categoria: "📐 Matemática",
+      materia: "matematica",
+      data: "01 Fev 2026",
+      imagem: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400",
+      destaque: false,
+      curtidas: 57,
+      visualizacoes: 890
+    },
+    {
+      id: 3,
+      titulo: "Resumo: Tabela Periódica Simplificada",
+      resumo: "Entenda os grupos e períodos de forma descomplicada.",
+      categoria: "🧪 Ciências",
+      materia: "ciencias",
+      data: "26 Jan 2026",
+      imagem: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400",
+      destaque: false,
+      curtidas: 45,
+      visualizacoes: 670
+    },
+    {
+      id: 4,
+      titulo: "Guia Completo: Como Escrever uma Redação Nota 1000",
+      resumo: "Estrutura, argumentação e dicas de correção.",
+      categoria: "📘 Português",
+      materia: "portugues",
+      data: "30 Jan 2026",
+      imagem: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=400",
+      destaque: true,
+      curtidas: 89,
+      visualizacoes: 1500
+    },
+    {
+      id: 5,
+      titulo: "Como Criar um Cronograma de Estudos Eficiente",
+      resumo: "Aprenda a organizar seu tempo de forma inteligente e produtiva.",
+      categoria: "📝 Organização",
+      materia: "geral",
+      data: "03 Fev 2026",
+      imagem: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400",
+      destaque: false,
+      curtidas: 38,
+      visualizacoes: 750
+    },
+    {
+      id: 6,
+      titulo: "Técnicas de Memorização que Realmente Funcionam",
+      resumo: "Métodos comprovados para fixar conteúdo de forma eficaz.",
+      categoria: "🧠 Produtividade",
+      materia: "geral",
+      data: "28 Jan 2026",
+      imagem: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400",
+      destaque: false,
+      curtidas: 34,
+      visualizacoes: 520
+    },
+    {
+      id: 7,
+      titulo: "Idade Média: Mitos e Verdades",
+      resumo: "O que a escola não conta sobre esse período histórico.",
+      categoria: "📜 História",
+      materia: "historia",
+      data: "25 Jan 2026",
+      imagem: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=400",
+      destaque: false,
+      curtidas: 29,
+      visualizacoes: 430
+    },
+    {
+      id: 8,
+      titulo: "Geografia: Como ler mapas corretamente",
+      resumo: "Escalas, coordenadas e interpretação cartográfica.",
+      categoria: "🌍 Geografia",
+      materia: "geografia",
+      data: "22 Jan 2026",
+      imagem: "https://images.unsplash.com/photo-1589519160732-57fc498494f8?w=400",
+      destaque: false,
+      curtidas: 31,
+      visualizacoes: 380
+    },
+    {
+      id: 9,
+      titulo: "Verb to be: Aprenda de uma vez por todas",
+      resumo: "Guia definitivo para o verbo mais importante do inglês.",
+      categoria: "🇬🇧 Inglês",
+      materia: "ingles",
+      data: "20 Jan 2026",
+      imagem: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400",
+      destaque: false,
+      curtidas: 52,
+      visualizacoes: 920
     }
+  ];
 
-    const temaSalvo = localStorage.getItem('tema');
-    if (temaSalvo === 'escuro') {
-      document.body.classList.add('tema-escuro');
-      document.getElementById('tema-icon').classList.replace('fa-moon', 'fa-sun');
+  // ============================================
+  // VARIÁVEIS GLOBAIS
+  // ============================================
+  
+  let postsFiltrados = [...posts];
+  let postsExibindo = 6;
+  let filtroAtual = 'todos';
+
+  // ============================================
+  // RENDERIZAR POSTS
+  // ============================================
+  
+  function renderizarPosts() {
+    const container = document.getElementById('container-posts');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    const postsParaExibir = postsFiltrados.slice(0, postsExibindo);
+    
+    postsParaExibir.forEach((post, index) => {
+      const isFeatured = post.destaque && index === 0;
+      
+      const postHTML = `
+        <article class="post-card ${isFeatured ? 'featured' : ''}">
+          <div class="post-image">
+            <img src="${post.imagem}" alt="${post.titulo}" loading="lazy">
+            ${post.destaque ? '<span class="post-badge">Destaque</span>' : ''}
+          </div>
+          <div class="post-content">
+            <div class="post-meta">
+              <span class="post-categoria">${post.categoria}</span>
+              <span class="post-data">${post.data}</span>
+            </div>
+            <h${isFeatured ? '2' : '3'} class="post-titulo">${post.titulo}</h${isFeatured ? '2' : '3'}>
+            <p class="post-resumo">${post.resumo}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <a href="post.html?id=${post.id}" class="post-link">
+                Ler mais <i class="fas fa-arrow-right"></i>
+              </a>
+              <span style="color: var(--gray); display: flex; align-items: center; gap: 0.3rem;">
+                <i class="fas fa-heart" style="color: #ef4444;"></i> ${post.curtidas}
+              </span>
+            </div>
+          </div>
+        </article>
+      `;
+      
+      container.innerHTML += postHTML;
+    });
+    
+    // Botão ver mais
+    const btnVerMais = document.getElementById('btnVerMais');
+    if (btnVerMais) {
+      if (postsFiltrados.length <= postsExibindo) {
+        btnVerMais.style.display = 'none';
+      } else {
+        btnVerMais.style.display = 'inline-flex';
+      }
     }
-  });
-
-  function scrollToContent() {
-    document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
   }
 
+  // ============================================
+  // FILTRAR POSTS
+  // ============================================
+  
+  function filtrarPosts(filtro, event) {
+    if (event) event.preventDefault();
+    
+    filtroAtual = filtro;
+    postsExibindo = 6;
+    
+    // Remover active de todos os botões
+    document.querySelectorAll('.nav-tabs .tab-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    
+    // Adicionar active ao botão clicado
+    if (event && event.target) {
+      const btn = event.target.closest('.tab-btn');
+      if (btn) btn.classList.add('active');
+    }
+    
+    // Filtrar posts
+    if (filtro === 'todos') {
+      postsFiltrados = [...posts];
+    } else if (filtro === 'recentes') {
+      postsFiltrados = [...posts].sort((a, b) => {
+        const dataA = new Date(a.data.split(' ').reverse().join('-'));
+        const dataB = new Date(b.data.split(' ').reverse().join('-'));
+        return dataB - dataA;
+      });
+    } else if (filtro === 'maisLidos') {
+      postsFiltrados = [...posts].sort((a, b) => b.visualizacoes - a.visualizacoes);
+    } else if (filtro === 'destaques') {
+      postsFiltrados = posts.filter(post => post.destaque === true);
+    }
+    
+    renderizarPosts();
+  }
+
+  // ============================================
+  // CARREGAR MAIS POSTS
+  // ============================================
+  
+  function carregarMaisPosts() {
+    postsExibindo += 3;
+    renderizarPosts();
+  }
+
+  // ============================================
+  // TEMA ESCURO/CLARO
+  // ============================================
+  
   function toggleTema() {
     document.body.classList.toggle('tema-escuro');
     const icon = document.getElementById('tema-icon');
@@ -254,13 +376,101 @@
     }
   }
 
-  document.querySelector('.dropdown-toggle').addEventListener('click', function(e) {
-    e.stopPropagation();
-    this.parentElement.classList.toggle('active');
-  });
+  // ============================================
+  // SCROLL PARA CONTEÚDO
+  // ============================================
+  
+  function scrollToContent() {
+    document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
+  }
 
-  document.addEventListener('click', function() {
-    document.querySelector('.dropdown').classList.remove('active');
+  // ============================================
+  // INICIALIZAÇÃO
+  // ============================================
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    // Renderizar posts
+    renderizarPosts();
+    
+    // Ativar botão Início
+    const btnInicio = document.querySelector('.tab-btn.active');
+    if (!btnInicio) {
+      const primeiroBotao = document.querySelector('.nav-tabs .tab-btn');
+      if (primeiroBotao) primeiroBotao.classList.add('active');
+    }
+
+    // Tema escuro
+    const temaSalvo = localStorage.getItem('tema');
+    if (temaSalvo === 'escuro') {
+      document.body.classList.add('tema-escuro');
+      const icon = document.getElementById('tema-icon');
+      if (icon) icon.classList.replace('fa-moon', 'fa-sun');
+    }
+
+    // ============================================
+    // DROPDOWN CORRIGIDO - position: fixed + JS
+    // ============================================
+    const dropdownBtn    = document.getElementById('dropdown-btn');
+    const dropdown       = document.getElementById('dropdown-categorias');
+    const dropdownContent = document.getElementById('dropdown-content');
+
+    if (dropdownBtn && dropdown && dropdownContent) {
+
+      // Função que posiciona o dropdown usando getBoundingClientRect
+      function posicionarDropdown() {
+        const rect = dropdownBtn.getBoundingClientRect();
+        dropdownContent.style.top  = rect.bottom + 'px';
+        dropdownContent.style.left = rect.left + 'px';
+      }
+
+      // Abrir / fechar ao clicar no botão
+      dropdownBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const estaAberto = dropdown.classList.contains('active');
+
+        // Fecha todos os dropdowns (caso haja mais de um no futuro)
+        document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
+
+        if (!estaAberto) {
+          dropdown.classList.add('active');
+          posicionarDropdown();
+        }
+      });
+
+      // Reposicionar ao rolar ou redimensionar (o botão se move com o sticky nav)
+      window.addEventListener('scroll', function() {
+        if (dropdown.classList.contains('active')) {
+          posicionarDropdown();
+        }
+      });
+
+      window.addEventListener('resize', function() {
+        if (dropdown.classList.contains('active')) {
+          posicionarDropdown();
+        }
+      });
+
+      // Fechar ao clicar fora
+      document.addEventListener('click', function(e) {
+        if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove('active');
+        }
+      });
+
+      // Fechar ao clicar em qualquer link interno
+      dropdownContent.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+          dropdown.classList.remove('active');
+        });
+      });
+
+      // Impede que clique DENTRO do conteúdo feche o dropdown
+      dropdownContent.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    }
   });
 </script>
 

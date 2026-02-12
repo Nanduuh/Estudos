@@ -3,76 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Física - Blog de Estudos</title>
+  <title>⚙️ Física - Blog de Estudos</title>
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 <header class="topo">
-  <h1 class="logo">Blog<span>Estudos</span></h1>
-  <p class="descricao">Resumos • Matérias • Dicas • Organização</p>
-
-  <nav class="menu" id="menu-login">
-    <a href="../login.html">Login</a>
-    <a href="../cadastro.html">Cadastro</a>
-  </nav>
+  <div class="topo-container">
+    <img src="../img/logo.png" alt="Blog Estudos" class="logo-img" onclick="window.location.href='../index.html'">
+    <nav class="menu">
+      <a href="../index.html">Início</a>
+    </nav>
+  </div>
 </header>
 
-<main class="materia-container">
-  
-  <div class="materia-header">
-    <div class="breadcrumb">
-      <a href="../index.html">← Início</a>
+<main class="container">
+  <div class="breadcrumb">
+    <a href="../index.html"><i class="fas fa-arrow-left"></i> Voltar</a>
+  </div>
+
+  <h1 class="titulo-secao">⚙️ Física</h1>
+
+  <div class="posts-grid">
+    <div class="container-posts" id="posts-container">
+      <!-- Posts serão carregados aqui -->
     </div>
-    <h1>⚛️ Física</h1>
   </div>
-
-  <div class="materia-conteudo">
-    <h2>Conteúdos de Física</h2>
-
-    <h3>Mecânica</h3>
-    <p>Cinemática, dinâmica e leis de Newton.</p>
-    <p>Estuda o movimento dos corpos e as forças que atuam sobre eles, incluindo conceitos como velocidade, aceleração e energia.</p>
-
-    <h3>Termologia</h3>
-    <p>Calor, temperatura e termodinâmica.</p>
-    <p>Aborda os fenômenos relacionados ao calor, temperatura e transformações de energia térmica.</p>
-
-    <h3>Óptica</h3>
-    <p>Luz, reflexão, refração e lentes.</p>
-    <p>Estuda o comportamento da luz, sua propagação e interação com diferentes meios e superfícies.</p>
-
-    <h2>Principais Tópicos</h2>
-    
-    <ul>
-      <li>Cinemática e movimento</li>
-      <li>Leis de Newton e dinâmica</li>
-      <li>Energia e trabalho</li>
-      <li>Calor e termodinâmica</li>
-      <li>Óptica geométrica e física</li>
-      <li>Eletricidade e magnetismo</li>
-      <li>Ondas e acústica</li>
-    </ul>
-
-    <h2>Dicas de Estudo</h2>
-    
-    <p><strong>Resolva exercícios:</strong> A prática com problemas é essencial para entender os conceitos físicos.</p>
-    <p><strong>Use fórmulas com contexto:</strong> Entenda a origem e aplicação de cada fórmula.</p>
-    <p><strong>Visualize fenômenos:</strong> Use simulações online para ver conceitos abstratos em ação.</p>
-
-  </div>
-
 </main>
 
 <footer>
-  <p>Blog de Estudos © 2026</p>
+  <div class="footer-content">
+    <div class="footer-bottom">
+      <p>© 2026 Blog de Estudos. Todos os direitos reservados.</p>
+    </div>
+  </div>
 </footer>
 
-<script src="../js/auth.js"></script>
+<script src="../js/posts.js"></script>
 <script>
-  if (typeof atualizarMenu === 'function') {
-    atualizarMenu();
+  function carregarMateria() {
+    const container = document.getElementById('posts-container');
+    const posts = pegarPosts().filter(p => p.materia === 'fisica');
+
+    if (posts.length === 0) {
+      container.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+          <i class="fas fa-inbox" style="font-size: 3rem; color: #cbd5e1; margin-bottom: 1rem;"></i>
+          <h3 style="color: #64748b;">Nenhum post de ⚙️ Física ainda</h3>
+          <p style="color: #94a3b8;">Seja o primeiro a criar um post sobre essa matéria!</p>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = posts.map(post => {
+      const curtidas = pegarCurtidas(post.id);
+      return `
+        <article class="post-card">
+          ${post.imagem ? `
+            <div class="post-image">
+              <img src="${post.imagem}" alt="${post.titulo}">
+            </div>
+          ` : ''}
+          <div class="post-content">
+            <div class="post-meta">
+              <span class="post-categoria">${post.categoria}</span>
+              <span class="post-data">${formatarData(post.data)}</span>
+            </div>
+            <h3 class="post-titulo">${post.titulo}</h3>
+            <p class="post-resumo">${post.resumo}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+              <a href="../post.html?id=${post.id}" class="post-link">Ler mais →</a>
+              <span style="color: #94a3b8; font-size: 0.9rem;">
+                <i class="fas fa-heart"></i> ${curtidas}
+              </span>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join('');
   }
+
+  function formatarData(dataISO) {
+    const data = new Date(dataISO);
+    return data.toLocaleDateString('pt-BR');
+  }
+
+  carregarMateria();
 </script>
 
 </body>
